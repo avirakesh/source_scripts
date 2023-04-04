@@ -1,0 +1,5 @@
+for f in $HOME/.source_src/*; do
+    if [[ -f $f && "$f" != "$HOME/.source_src/source_main.rc" ]]; then
+        source $f;
+    fi;
+done;
