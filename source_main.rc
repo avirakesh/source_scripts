@@ -1,5 +1,7 @@
-for f in $HOME/.source_src/*; do
-    if [[ -f $f && "$f" != "$HOME/.source_src/source_main.rc" ]]; then
+CURR_DIR="$(dirname $0)"
+
+for f in $CURR_DIR/*; do
+    if [[ -f $f && "$f" != "$0" ]]; then
         source $f;
     fi;
 done;
