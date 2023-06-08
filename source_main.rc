@@ -1,7 +1,10 @@
+# source all files in this directory
 CURR_DIR="$(dirname $0)"
-
 for f in $CURR_DIR/*; do
     if [[ -f $f && "$f" != "$0" ]]; then
         source $f;
     fi;
 done;
+
+# Make micro the default editor
+EDITOR="micro"
