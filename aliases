@@ -2,3 +2,4 @@ alias coden="code -n"
 
 # micro
 alias mi="micro"
+alias mir="micro -readonly on"
