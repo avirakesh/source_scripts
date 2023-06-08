@@ -1,0 +1,13 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "Ctrl-b": "FindPrevious",
+    "Ctrl-d": "DuplicateLine",
+    "Ctrl-Delete": "DeleteWordRight",
+    "Ctrl-g": "command-edit:goto",
+    "Ctrl-p": "CommandMode",
+    "CtrlShiftDown": "MoveLinesDown",
+    "CtrlShiftEnd": "SelectToEnd",
+    "CtrlShiftHome": "SelectToStart",
+    "CtrlShiftUp": "MoveLinesUp",
+    "CtrlUnderscore": "lua:comment.comment",
+}

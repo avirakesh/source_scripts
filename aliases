@@ -1,1 +1,4 @@
 alias coden="code -n"
+
+# micro
+alias mi="micro"
