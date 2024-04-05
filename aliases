@@ -7,8 +7,3 @@ alias mir="micro -readonly on"
 # tmux 
 alias tmat="tmux attach -t"
 alias tmnt="tmux new -t"
-
-# kitty
-if [[ "$TERM" == *kitty ]]; then
-    alias ssh="kitty +kitten ssh"
-fi;
