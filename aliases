@@ -1,9 +1,14 @@
+
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+    alias code="command code --ozone-platform=wayland"
+fi;
+
 alias coden="code -n"
 
 # micro
 alias mi="micro"
 alias mir="micro -readonly on"
 
-# tmux 
+# tmux
 alias tmat="tmux attach -t"
 alias tmnt="tmux new -t"
