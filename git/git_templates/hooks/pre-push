@@ -1,0 +1,34 @@
+#!/bin/bash
+
+empty_commit=0000000000000000000000000000000000000000
+
+IFS=' ' # split on spaces
+
+while read local_ref local_sha remote_ref remote_sha; do
+    if [[ "$local_sha" == "$empty_commit" ]]; then
+        # branch deleted; do nothing.
+        exit 0
+    fi
+
+    if [[ "$remote_sha" == "$empty_commit" ]]; then
+        # new branch; examine all commits
+        range="$local_sha"
+    else
+        # existing branch; only examine new commits
+        range="$remote_sha..$local_sha"
+    fi
+
+    # check for commits that contain WIP/DO NOT PUSH/DO NOT MERGE in the commit message
+    commit=$(git rev-list -n 1 --grep='^WIP' --grep='DO NOT PUSH' --grep='DO NOT MERGE' --grep='^DNM' $range)
+    if [[ -n "$commit" ]]; then
+        echo "Commit $commit has a forbidden flag (WIP, DO NOT PUSH, DO NOT MERGE or DNM)."
+        echo ""
+
+        # pretty print comit message and highlight forbidden flags
+        git rev-list --pretty -n 1 "$commit" | grep --color -E '^|WIP|DNM|DO NOT PUSH|DO NOT MERGE'
+
+        echo "Aborting Push. Please remove the flag and try again."
+        exit 1
+    fi
+done
+exit 0
