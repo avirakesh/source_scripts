@@ -12,3 +12,8 @@ alias mir="micro -readonly on"
 # tmux
 alias tmat="tmux attach -t"
 alias tmnt="tmux new -t"
+
+# zellij
+alias zj="zellij"
+alias zja="zellij attach"
+alias zjac="zellij attach --create"
