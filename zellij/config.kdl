@@ -145,11 +145,13 @@ keybinds clear-defaults=true {
     shared_except "locked" "session" {
         bind "Ctrl o" { SwitchToMode "session"; }
     }
-    shared_except "locked" "scroll" {
+    shared_except "scroll" {
         bind "Alt left" { MoveFocusOrTab "left"; }
         bind "Alt down" { MoveFocus "down"; }
         bind "Alt up" { MoveFocus "up"; }
         bind "Alt right" { MoveFocusOrTab "right"; }
+    }
+    shared_except "locked" "scroll" {
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
@@ -351,7 +353,7 @@ default_mode "normal"
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-copy_command "wl-copy"                    // wayland
+// copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 // 
 // copy_command "pbcopy"
@@ -437,3 +439,9 @@ session_serialization false
 // Default: true (if the host terminal supports it)
 // 
 // support_kitty_keyboard_protocol false
+
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}

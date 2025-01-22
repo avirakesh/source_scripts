@@ -24,6 +24,6 @@ EDITOR="micro"
 
 # auto start zellij at start and exit on zellij exit
 if [[ -z "$ZELLIJ" && -n "$AUTOSTART_ZELLIJ" ]]; then
-    zellij attach -c main
+    zellij
     exit
 fi
