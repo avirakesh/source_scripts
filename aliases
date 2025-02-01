@@ -9,6 +9,9 @@ alias coden="code -n"
 alias mi="micro"
 alias mir="micro -readonly on"
 
+# vim
+alias vimro="vim -R"
+
 # tmux
 alias tmat="tmux attach -t"
 alias tmnt="tmux new -t"

@@ -14,7 +14,7 @@ for f in $CURR_DIR/*; do
 done;
 
 # Make micro the default editor
-EDITOR="micro"
+EDITOR="vim"
 
 #Powerlevel10k setup
 
