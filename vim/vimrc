@@ -18,6 +18,8 @@ Plugin 'matze/vim-move' " move lines/blocks up/down
 Plugin 'NLKNguyen/papercolor-theme' " PaperColor theme
 Plugin 'tmsvg/pear-tree' " Quote/Parenthesis pairing
 Plugin 'tpope/vim-surround' " Surround selection/line/word with quote/brackets
+Plugin 'vim-airline/vim-airline' " Better tab/status line
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -65,6 +67,7 @@ syntax enable " enable syntax highlighting
 set termguicolors
 set background=dark
 colorscheme PaperColor
+let g:airline_theme='papercolor'
 
 """"""""""""
 " CUA Mode "
