@@ -1,0 +1,143 @@
+""""""""""
+" Vundle "
+""""""""""
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"""" Add Plugins here.
+Plugin 'ntpeters/vim-better-whitespace' " trim trailing whitespaces
+Plugin 'matze/vim-move' " move lines/blocks up/down
+Plugin 'NLKNguyen/papercolor-theme' " PaperColor theme
+Plugin 'tmsvg/pear-tree' " Quote/Parenthesis pairing
+Plugin 'tpope/vim-surround' " Surround selection/line/word with quote/brackets
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+""""""
+" UI "
+""""""
+
+" disable vi compatibility
+set nocompatible
+
+" automatically load changed files
+set autoread
+
+" show filename in the window titlebar
+set title
+
+" directories for swp files
+set backupdir=~/.vim/backup
+set directory=~/.vim/backupf
+
+" display incomplete commands at the bottom
+set showcmd
+
+" mouse support
+set mouse=a
+
+" line nubmer
+set number
+
+" ruler at 80 chars
+set colorcolumn=80
+
+" Be able to arrow key and backspace across newlines
+set whichwrap=bs<>[]
+
+" enable completion
+set ofu=syntaxcomplete#Complete
+
+"""""""""
+" Theme "
+"""""""""
+
+syntax enable " enable syntax highlighting
+set termguicolors
+set background=dark
+colorscheme PaperColor
+
+""""""""""""
+" CUA Mode "
+""""""""""""
+
+" shift+arrows triggers select mode
+set keymodel=startsel,stopsel
+
+" backspace and cursor keys wrap to previous/next line
+set backspace=indent,eol,start whichwrap+=<,>,[,]
+
+" backspace in visual mode deletes selection
+vnoremap <BS> d
+
+" Ctrl Z in undo
+noremap <C-Z> u
+inoremap <C-Z> <C-O>u
+
+" Ctrl A is select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
+
+"""""""""""""
+" Searching "
+"""""""""""""
+
+set hlsearch " when there is a previous search pattern, highlight all its matches
+set incsearch " show immediately while typing search pattern
+set ignorecase " ingore case in search patterns
+set smartcase " override 'ignorecase' if there is an uppercase character
+set gdefault " imply global for new searches
+
+"""""""""""""
+" Indenting "
+"""""""""""""
+
+" When auto-indenting, use the indenting format of the previous line
+set copyindent
+
+" When on a <Tab> in fron t of a line, insert blanks according to 'shiftwidth'
+" 'tabstop' is used in other places. A <BS> will delete a 'shiftwidth' worth
+" of space at the start of the line.
+set smarttab
+
+" Copy indent from the current line when starting a new line (typing <CR> in
+" Insert mode or using the "o" or "O" command)
+set autoindent
+
+" Automatically inserts one extra level of indentation in some cases and
+" works for C-like files
+set smartindent
+
+" Insert tab at 4 spaces by default
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+""""""""""""""""""
+" General Editor "
+""""""""""""""""""
+
+" Move lines/selection up or down
+let g:move_map_keys=0 " remove default bindings from plugin
+
+nmap <C-S-Up> <Plug>MoveLineUp
+nmap <C-S-Down> <Plug>MoveLineDown
+vmap <C-S-Up> <Plug>MoveBlockUp
+vmap <C-S-Down> <Plug>MoveBlockDown
+
+" vim-better-whitespace -- strip trailing whitespaces on save
+let g:strip_whitespace_on_save=1
