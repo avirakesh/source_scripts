@@ -1,7 +1,6 @@
 import = ["~/.config/alacritty/themes/themes/tokyo_night.toml"]
 
 [env]
-AUTOSTART_ZELLIJ = "true"
 
 [font]
 normal = { family="FiraCode Nerd Font Mono" }
