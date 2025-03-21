@@ -5,12 +5,9 @@ fi;
 
 alias coden="code -n"
 
-# micro
-alias mi="micro"
-alias mir="micro -readonly on"
-
 # vim
-alias vimro="vim -R"
+alias vi="vim"
+alias vir="vim -R"
 
 # tmux
 alias tmat="tmux attach -t"
