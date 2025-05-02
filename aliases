@@ -7,7 +7,7 @@ alias coden="code -n"
 
 # vim
 alias vi="vim"
-alias vir="vim -R"
+alias vir="view"
 
 # tmux
 alias tmat="tmux attach -t"
