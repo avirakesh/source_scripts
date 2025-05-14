@@ -21,6 +21,7 @@ Plugin 'tpope/vim-surround' " Surround selection/line/word with quote/brackets
 Plugin 'tpope/vim-commentary' " (Un)Comment selection/line
 Plugin 'vim-airline/vim-airline' " Better tab/status line
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ycm-core/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
