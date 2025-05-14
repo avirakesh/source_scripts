@@ -58,6 +58,9 @@ elif [[ -f "$vimrc" ]]; then
 fi
 
 local_vimrc="$current_directory/vimrc"
+if [[ "${1:-}" == "--min" ]]; then
+    local_vimrc="$current_directory/min.vimrc"
+fi
 
 # Create a symlink to the config file
 echo -e "Symlinking $yellow$local_vimrc$reset to $green$vimrc$reset"
