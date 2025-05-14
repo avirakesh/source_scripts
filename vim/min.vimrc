@@ -64,7 +64,7 @@ set ofu=syntaxcomplete#Complete
 syntax enable " enable syntax highlighting
 set termguicolors
 set background=dark
-colorscheme sorbet
+colorscheme slate
 
 """"""""""""
 " CUA Mode "
