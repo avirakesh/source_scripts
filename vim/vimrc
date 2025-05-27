@@ -149,6 +149,9 @@ imap <C-_> <ESC><Plug>CommentaryLine i
 nmap <C-_> <Plug>CommentaryLine
 vmap <C-_> <Plug>Commentary
 
+" Allow saving with sudo if the file is unwritable.
+cmap w!! w !sudo tee > /dev/null %
+
 " vim-better-whitespace -- strip trailing whitespaces on save
 let g:strip_whitespace_on_save=1
 
