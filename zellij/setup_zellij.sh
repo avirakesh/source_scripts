@@ -7,7 +7,11 @@ current_directory="$(realpath "$current_directory")"
 
 # Define the paths for the config file and symlink destination
 config_file_path="$current_directory/config.kdl"
-symlink_destination="$HOME/.config/zellij/config.kdl"
+
+zellij_config_dir="$HOME/.config/zellij"
+symlink_destination="$zellij_config_dir/config.kdl"
+
+mkdir -p "$zellij_config_dir"
 
 # Define the colors for output
 read="\033[31m"
