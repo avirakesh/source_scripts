@@ -132,6 +132,22 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+
+""""""""""""""""""""
+" Custom Functions "
+""""""""""""""""""""
+
+" Function to move to the start of the text (after the indentation) when
+" the cursor is somewhere in the middle of the line, or to move the cursor
+" to column 0 if the cursor is already at the start of the text.
+function ExtendedHome()
+    let column = col('.')
+    normal! ^
+    if column == col('.')
+        normal! 0
+    endif
+endfunction
+
 """"""""""""""""""
 " General Editor "
 """"""""""""""""""
@@ -164,3 +180,11 @@ set ttimeout
 set ttimeoutlen=1
 set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
 set ttyfast
+
+" Press Home to go to the start of the text (after indentation) and then
+" press again to go to column 0
+noremap <silent> <Home> :call ExtendedHome()<CR>
+inoremap <silent> <Home> <C-O>:call ExtendedHome()<CR>
+
+" Copy to system clipboard with Ctrl+C
+xnoremap <silent> <C-c> :w !wl-copy<CR><CR>
