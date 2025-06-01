@@ -16,6 +16,9 @@ done;
 # Make micro the default editor
 EDITOR="vim"
 
+# Used for live_rsync in util_functions.sh
+export CUSTOM_RSYNC_EXCLUDE_PATH="$CURR_DIR/rsync/ignore.txt"
+
 #Powerlevel10k setup
 
 # To customize prompt, run `p10k configure` or edit $CURR_DIR/oh-my-zsh/powerlevel/p10k.zsh.
