@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Wrapper script to delegate to emacsclient on linux.
+## MacOS seems to be having some issues with connecting to emacs
+## daemon socket ¯\_(ツ)_/¯
+if [[ "$OSTYPE" == "darwin"*  ]]; then
+    command emacs -nw "$@"
+else
+    command emacsclient -t "$@"
+fi
+

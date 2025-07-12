@@ -9,6 +9,10 @@ alias coden="code -n"
 alias vi="vim"
 alias vir="view"
 
+# emacs
+alias emacs="emacsw"
+alias ema="emacsw"
+
 # tmux
 alias tmat="tmux attach -t"
 alias tmnt="tmux new -t"

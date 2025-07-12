@@ -13,8 +13,16 @@ for f in $CURR_DIR/*; do
     fi;
 done;
 
-# Make micro the default editor
-EDITOR="vim"
+export PATH="$PATH:$HOME/bin"
+
+# Make emacs the default editor
+export ALTERNATE_EDITOR="" # causes emacsclient to start a new daemon if needed
+export EDITOR="emacsw"
+
+if [[ -z "$COLORTERM" ]]; then
+    # More often than not, the backing terminal will support truecolor
+    export COLORTERM="truecolor"
+fi
 
 # Used for live_rsync in util_functions.sh
 export CUSTOM_RSYNC_EXCLUDE_PATH="$CURR_DIR/rsync/ignore.txt"
