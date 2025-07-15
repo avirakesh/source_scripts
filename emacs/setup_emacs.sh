@@ -41,7 +41,6 @@ elif [[ -f "$target_init_el" ]]; then
 fi
 
 src_init_el="$current_directory/init.el"
-="$current_directory/vimrc"
 if [[ "${1:-}" == "--min" ]]; then
     src_init_el="$current_directory/min.init.el"
 fi
