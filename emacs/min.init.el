@@ -43,7 +43,15 @@
 
 ;; Show ruler
 (global-display-fill-column-indicator-mode 1)
-(setopt display-fill-column-indicator-column 80)
+(if (version<= "29.0" emacs-version)
+    ;; For Emacs 29 and later, use setopt
+    (setopt display-fill-column-indicator-column 80)
+  ;; For Emacs versions older than 29 (but 27 or 28), use setq
+  (if (version<= "27.0" emacs-version)
+      (setq display-fill-column-indicator-column 80)
+    ;; For Emacs versions older than 27, the variable doesn't exist natively.
+    ;; Ignored.
+    ))
 
 ;; Enable autocomplete globally
 (use-package company
@@ -56,13 +64,6 @@
 ;; (add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
 ;; Familiar keybinds
-(keymap-global-set "C-v" 'yank)
-(keymap-global-set "C-a" 'mark-whole-buffer)
-(keymap-global-set "C-z" 'undo-tree-undo)
-(keymap-global-set "C-y" 'undo-tree-redo)
-(keymap-global-set "M-/" 'comment-line)
-
-
 (defun duplicate-line-or-dwim ()
   "Duplicate the current line or the selected region.
    If a region is active, it duplicates the text in the region.
@@ -72,4 +73,22 @@
       (duplicate-dwim)
     (duplicate-dwim)))
 
-(keymap-global-set "C-d" 'duplicate-line-or-dwim)
+(if (version<= "29.0" emacs-version)
+    ;; --- For Emacs 29 and later (use keymap-global-set) ---
+    (progn
+      (keymap-global-set "C-v" 'yank)
+      (keymap-global-set "C-a" 'mark-whole-buffer)
+      (keymap-global-set "C-z" 'undo-tree-undo)
+      (keymap-global-set "C-y" 'undo-tree-redo)
+      (keymap-global-set "M-/" 'comment-line)
+      (keymap-global-set "C-d" 'duplicate-line-or-dwim))
+
+
+  ;; --- For Emacs versions older than 29 (use global-set-key) ---
+  (progn
+    (global-set-key (kbd "C-v") 'yank)
+    (global-set-key (kbd "C-a") 'mark-whole-buffer)
+    (global-set-key (kbd "C-z") 'undo-tree-undo)
+    (global-set-key (kbd "C-y") 'undo-tree-redo)
+    (global-set-key (kbd "M-/") 'comment-line)
+    (global-set-key (kbd "C-d") 'duplicate-line-or-dwim)))
