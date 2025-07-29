@@ -12,6 +12,13 @@
   :config
   (move-text-default-bindings))
 
+;; Markdown support
+(use-package markdown-mode
+  :ensure t
+  :mode ("\.md\'" . gfm-mode)
+  :init
+  (setq markdown-command "pandoc"))
+
 ;; Smart parentheses
 (use-package smartparens
   :ensure t
@@ -25,6 +32,13 @@
   :config
   (remove-hook 'server-switch-hook #'magit-commit-diff))
   ;; Remove the diff window from commit messages
+
+;; Show git changes in gutter
+(use-package diff-hl
+  :ensure t
+  :config
+  (global-diff-hl-mode)
+  (add-hook 'diff-hl-mode-hook 'diff-hl-flydiff-mode))
 
 ;; Indent text on move
 (defun indent-region-advice (&rest ignored)
@@ -55,7 +69,30 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
-;; Familiar keybinds
+;; Python support
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable)
+  :hook (python-mode . elpy-mode))
+
+;; C/C++ support
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp)
+  :hook (c-mode . lsp)
+        (c++-mode . lsp)
+  :init
+  (setq lsp-keymap-prefix "C-c l"))
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+
+;; Familiar key binds
 (keymap-global-set "C-v" 'yank)
 (keymap-global-set "C-a" 'mark-whole-buffer)
 (keymap-global-set "C-z" 'undo-tree-undo)
