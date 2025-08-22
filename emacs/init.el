@@ -120,3 +120,6 @@
 ;;; --- File Saving ---
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq require-final-newline t)
+
+;;; --- Allow built-in-packages to be upgraded ---
+(setq package-install-upgrade-built-in t)
