@@ -9,7 +9,7 @@
 
 ;; Show ruler
 (global-display-fill-column-indicator-mode 1)
-(setopt display-fill-column-indicator-column 80)
+(setq display-fill-column-indicator-column 80)
 
 
 ;;; --- Editing Enhancements ---
@@ -96,13 +96,10 @@
         (c++-mode . lsp)
   :init
   (setq lsp-keymap-prefix "C-c l"))
+
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)
-
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
 
 
 ;;; --- Keybindings ---
