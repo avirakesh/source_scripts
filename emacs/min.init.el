@@ -1,16 +1,34 @@
 (load "~/.emacs.d/sanemacs.el" nil t)
 
+;;; --- Appearance ---
 ;; Theme
 (use-package catppuccin-theme
   :ensure t
   :config
   (load-theme 'catppuccin :no-confirm))
 
+;; Show ruler
+(global-display-fill-column-indicator-mode 1)
+(setq display-fill-column-indicator-column 80)
+
+
+;;; --- Editing Enhancements ---
 ;; M-up/M-down for moving line or selection up/down
 (use-package move-text
   :ensure t
   :config
   (move-text-default-bindings))
+
+;; Indent text on move
+(defun indent-region-advice (&rest ignored)
+  (let ((deactivate deactivate-mark))
+    (if (region-active-p)
+	(indent-region (region-beginning) (region-end))
+      (indent-region (line-beginning-position) (line-end-position)))
+    (setq deactivate-mark deactivate)))
+
+(advice-add 'move-text-up :after 'indent-region-advice)
+(advice-add 'move-text-down :after 'indent-region-advice)
 
 ;; Smart parentheses
 (use-package smartparens
@@ -19,51 +37,16 @@
   :config
   (require 'smartparens-config))
 
-;; Enable pretty color on git commit
-;; (use-package magit
-  ;; :ensure t
-  ;; :config
-  ;; (remove-hook 'server-switch-hook #'magit-commit-diff))
-  ;; Remove the diff window from commit messages
-
-;; Indent text on move
-;; (defun indent-region-advice (&rest ignored)
-  ;; (let ((deactivate deactivate-mark))
-    ;; (if (region-active-p)
-	;; (indent-region (region-beginning) (region-end))
-      ;; (indent-region (line-beginning-position) (line-end-position)))
-    ;; (setq deactivate-mark deactivate)))
-
-;; (advice-add 'move-text-up :after 'indent-region-advice)
-;; (advice-add 'move-text-down :after 'indent-region-advice)
-
-;; Enable mouse mode
-(unless (display-graphic-p)
-  (xterm-mouse-mode 1))
-
-;; Show ruler
-(global-display-fill-column-indicator-mode 1)
-(if (version<= "29.0" emacs-version)
-    ;; For Emacs 29 and later, use setopt
-    (setopt display-fill-column-indicator-column 80)
-  ;; For Emacs versions older than 29 (but 27 or 28), use setq
-  (if (version<= "27.0" emacs-version)
-      (setq display-fill-column-indicator-column 80)
-    ;; For Emacs versions older than 27, the variable doesn't exist natively.
-    ;; Ignored.
-    ))
-
 ;; Enable autocomplete globally
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
+;; (use-package company
+;;   :ensure t
+;;   :config
+;;   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; Enable spell check
 ;; (add-hook 'text-mode-hook #'flyspell-mode)
 ;; (add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
-;; Familiar keybinds
 (defun duplicate-line-or-dwim ()
   "Duplicate the current line or the selected region.
    If a region is active, it duplicates the text in the region.
@@ -73,22 +56,70 @@
       (duplicate-dwim)
     (duplicate-dwim)))
 
-(if (version<= "29.0" emacs-version)
-    ;; --- For Emacs 29 and later (use keymap-global-set) ---
-    (progn
-      (keymap-global-set "C-v" 'yank)
-      (keymap-global-set "C-a" 'mark-whole-buffer)
-      (keymap-global-set "C-z" 'undo-tree-undo)
-      (keymap-global-set "C-y" 'undo-tree-redo)
-      (keymap-global-set "M-/" 'comment-line)
-      (keymap-global-set "C-d" 'duplicate-line-or-dwim))
+
+;;; --- Version Control ---
+;; Enable pretty color on git commit
+(use-package magit
+  :ensure t
+  :config
+  (remove-hook 'server-switch-hook #'magit-commit-diff))
+  ;; Remove the diff window from commit messages
+
+;; Show git changes in gutter
+;; (use-package diff-hl
+;;   :ensure t
+;;   :config
+;;   (global-diff-hl-mode)
+;;   (add-hook 'diff-hl-mode-hook 'diff-hl-flydiff-mode))
 
 
-  ;; --- For Emacs versions older than 29 (use global-set-key) ---
-  (progn
-    (global-set-key (kbd "C-v") 'yank)
-    (global-set-key (kbd "C-a") 'mark-whole-buffer)
-    (global-set-key (kbd "C-z") 'undo-tree-undo)
-    (global-set-key (kbd "C-y") 'undo-tree-redo)
-    (global-set-key (kbd "M-/") 'comment-line)
-    (global-set-key (kbd "C-d") 'duplicate-line-or-dwim)))
+;;; --- Language Support ---
+;; Markdown support
+(use-package markdown-mode
+  :ensure t
+  :mode ("\.md\'" . gfm-mode)
+  :init
+  (setq markdown-command "pandoc"))
+
+;; Python support
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable)
+  :hook (python-mode . elpy-mode))
+
+;; C/C++ support
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp)
+  :hook (c-mode . lsp)
+        (c++-mode . lsp)
+  :init
+  (setq lsp-keymap-prefix "C-c l"))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+
+;;; --- Keybindings ---
+;; Familiar key binds
+(keymap-global-set "C-v" 'yank)
+(keymap-global-set "C-a" 'mark-whole-buffer)
+(keymap-global-set "C-z" 'undo-tree-undo)
+(keymap-global-set "C-y" 'undo-tree-redo)
+(keymap-global-set "M-/" 'comment-line)
+(keymap-global-set "C-d" 'duplicate-line-or-dwim)
+
+
+;;; --- Miscellaneous ---
+;; Enable mouse mode
+(unless (display-graphic-p)
+  (xterm-mouse-mode 1))
+
+;;; --- File Saving ---
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq require-final-newline t)
+
+;;; --- Allow built-in-packages to be upgraded ---
+(setq package-install-upgrade-built-in t)
