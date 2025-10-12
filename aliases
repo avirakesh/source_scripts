@@ -21,3 +21,9 @@ alias tmnt="tmux new -t"
 alias zj="zellij"
 alias zja="zellij attach"
 alias zjac="zellij attach --create"
+
+# Common ls aliases
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias ls='ls --color=auto'

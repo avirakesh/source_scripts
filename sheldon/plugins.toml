@@ -1,0 +1,16 @@
+# plugins.toml
+# Managed by Gemini CLI
+
+shell = "zsh"
+
+[plugins.zsh-dot-up]
+github = "toku-sa-n/zsh-dot-up"
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
