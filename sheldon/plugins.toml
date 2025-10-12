@@ -1,5 +1,4 @@
 # plugins.toml
-# Managed by Gemini CLI
 
 shell = "zsh"
 

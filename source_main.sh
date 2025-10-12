@@ -17,15 +17,11 @@ setopt hist_expire_dups_first # expire duplicates first when trimming history
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
-
-
-# source all files in this directory
+# Source individual configuration files
 CURR_DIR="$(dirname $0)"
-for f in $CURR_DIR/*; do
-    if [[ -f $f && "$f" != "$0" ]]; then
-        source $f;
-    fi;
-done;
+source "$CURR_DIR/aliases"
+source "$CURR_DIR/keybinds.zsh"
+source "$CURR_DIR/util_functions.sh"
 
 export PATH="$PATH:$HOME/bin"
 

@@ -1,5 +1,4 @@
 # starship.toml
-# Managed by Gemini CLI
 
 # Inserts a newline before the prompt.
 add_newline = true
