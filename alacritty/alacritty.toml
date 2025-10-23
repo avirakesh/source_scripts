@@ -2,8 +2,8 @@
 [env]
 
 [font]
-normal = { family="FiraCode Nerd Font Mono" }
-size = 11.25
+normal = { family="CaskaydiaCove Nerd Font Mono" }
+size = 11.5
 
 [terminal]
 osc52 = "CopyPaste"
