@@ -9,3 +9,6 @@ bindkey '\e[5C' forward-word # Ctrl+Right (alternative)
 bindkey '\e[5D' backward-word # Ctrl+Left (alternative)
 bindkey '\e[OH' beginning-of-line # Home (alternative)
 bindkey '\e[OF' end-of-line # End (alternative)
+
+# Fix for the delete key not working in some terminals
+bindkey '\e[3~' delete-char
