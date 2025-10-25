@@ -30,4 +30,9 @@ success_symbol = "[\\$](bold green)"
 error_symbol = "[\\$](bold red)"
 
 [python]
-format = "via [🐍 $virtualenv](bold green)"
+format = 'via [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+symbol = "🐍"
+style = "bold green"
+detect_files = []
+detect_folders = []
+detect_extensions = []
