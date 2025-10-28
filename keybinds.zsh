@@ -12,3 +12,7 @@ bindkey '\e[OF' end-of-line # End (alternative)
 
 # Fix for the delete key not working in some terminals
 bindkey '\e[3~' delete-char
+
+# Key bindings for zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

@@ -22,6 +22,7 @@ CURR_DIR="$(dirname $0)"
 source "$CURR_DIR/aliases"
 source "$CURR_DIR/keybinds.zsh"
 source "$CURR_DIR/util_functions.sh"
+source "$CURR_DIR/zsh_env.sh"
 
 export PATH="$PATH:$HOME/bin"
 
@@ -33,9 +34,6 @@ if [[ -z "$COLORTERM" ]]; then
     # More often than not, the backing terminal will support truecolor
     export COLORTERM="truecolor"
 fi
-
-# Used for live_rsync in util_functions.sh
-export CUSTOM_RSYNC_EXCLUDE_PATH="$CURR_DIR/rsync/ignore.txt"
 
 # Sheldon initialization
 eval "$(sheldon source)"
