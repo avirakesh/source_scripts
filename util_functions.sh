@@ -53,3 +53,8 @@ function live_rsync() {
         echo "Rsync complete. Waiting for next change..."
     done
 }
+
+function mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
