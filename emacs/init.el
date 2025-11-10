@@ -101,6 +101,16 @@
   :ensure t
   :commands lsp-ui-mode)
 
+;; YAML support
+(use-package yaml-mode
+  :ensure t
+  :mode ("\\.yml\\'" "\\.yaml\\'"))
+
+;; Dotenv support
+(use-package dotenv-mode
+  :ensure t
+  :mode ("\\.env\\'"))
+
 
 ;;; --- Keybindings ---
 ;; Familiar key binds
