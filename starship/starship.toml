@@ -4,7 +4,7 @@
 add_newline = true
 
 # The prompt format. Directory on the first line, prompt character on the second.
-format = """$directory$git_branch$git_status$fill$cmd_duration$time\n$character"""
+format = """$hostname$directory$git_branch$git_status$fill$cmd_duration$time\n$character"""
 right_format = "$python"
 
 [fill]
@@ -18,8 +18,6 @@ disabled = false
 format = "at [$time](#FFA500) "
 
 [directory]
-
-
 style = "cyan"
 repo_root_style = "bold yellow"
 fish_style_pwd_dir_length = 1
@@ -28,6 +26,10 @@ truncate_to_repo = true
 [character]
 success_symbol = "[\\$](bold green)"
 error_symbol = "[\\$](bold red)"
+
+[hostname]
+disabled = false
+format = "on [$hostname](bold red) "
 
 [python]
 format = 'via [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
