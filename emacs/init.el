@@ -131,5 +131,24 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq require-final-newline t)
 
+;;; --- Neotree (File Tree) ---
+(use-package neotree
+  :ensure t
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)) ;; Use icons in GUI, arrows in terminal
+  (setq neo-window-width 30) ;; Adjust width as needed
+  (setq neo-autorefresh t) ;; Automatically refresh neotree
+  (setq neo-smart-open t) ;; Open files in existing window if possible
+  (setq neo-show-hidden-files t) ;; Show hidden files
+
+  ;; Automatically open neotree when opening a directory with dired
+  (add-hook 'dired-after-readin-hook 'neotree-dir-hook)
+  (defun neotree-dir-hook ()
+    (when (eq major-mode 'dired-mode)
+      (neotree-toggle)))
+
+  :bind (("C-x n t" . neotree-toggle) ;; Toggle neotree
+         ("C-x n f" . neotree-find-file))) ;; Find file in neotree
+
 ;;; --- Allow built-in-packages to be upgraded ---
 (setq package-install-upgrade-built-in t)
