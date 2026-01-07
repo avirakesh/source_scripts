@@ -36,8 +36,8 @@ disabled = false
 format = "[$user]($style)@"
 
 [python]
-format = 'via [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
-symbol = "🐍"
+format = ' [${symbol} ${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+symbol = "\ued1b"
 style = "bold green"
 detect_files = []
 detect_folders = []
