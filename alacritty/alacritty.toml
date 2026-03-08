@@ -19,4 +19,4 @@ osc52 = "CopyPaste"
 bindings = [{ key="N", mods="Control | Shift", action="SpawnNewInstance" },]
 
 [general]
-import = ["~/.config/alacritty/themes/themes/monokai_charcoal.toml"]
+import = ["~/.config/alacritty/themes/themes/ayu_dark.toml"]
