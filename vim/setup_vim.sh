@@ -1,75 +1,58 @@
 #!/bin/bash
 set -euo pipefail
 
-# Define the colors for output
-red="\033[31m"
-green="\033[32m"
-yellow="\033[33m"
-reset="\033[0m"
-bold="\033[1m"
-normal=$(tput sgr0)
+# Get the script directory
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+source "$SCRIPT_DIR/../style_helpers.sh"
+
+header "Setting up Vim"
+echo ""
 
 if ! command -v vim &>/dev/null; then
-    echo -e "$red""vim not installed. Exiting...""$reset"
+    error "Vim is not installed. Exiting..."
     exit 1
 fi
-
-# Get the current directory of the script
-current_directory="$(dirname "$0")"
-current_directory="$(realpath "$current_directory")"
 
 # root dir of vim config
 config_dir="$HOME/.vim"
 
-echo -e "Creating $green$config_dir$reset"
-mkdir -p "$config_dir"
-
-echo -e "Creating $config_dir/${green}bundle$reset"
-mkdir -p "$config_dir/bundle"
-
-echo -e "Creating $config_dir/${green}backup$reset"
-mkdir -p "$config_dir/backup"
-
-echo -e "Creating $config_dir/${green}backupf$reset"
-mkdir -p "$config_dir/backupf"
+info "Creating vim configuration directories"
+mkdir -p "$config_dir"/{bundle,backup,backupf}
+echo ""
 
 vimrc="$HOME/.vimrc"
 
-echo -e ""
-echo -e "Installing Vundle"
+info "Installing Vundle"
 if [[ -d "$config_dir/bundle/Vundle.vim" ]]; then
-    echo -e "Vundle already exists. ${red}Deleting.$reset"
     rm -rf "$config_dir/bundle/Vundle.vim"
 fi
 
-echo -e "Cloning Vundle.vim into $config_dir/bundle/Vundle.vim"
 git clone https://github.com/VundleVim/Vundle.vim.git "$config_dir/bundle/Vundle.vim"
+echo ""
 
-echo -e ""
-# Check if the symlink already exists
+# Handle existing vimrc or symlink
 if [[ -L "$vimrc" ]]; then
-    # Delete the symlink
     rm "$vimrc"
-    echo -e "Deleted symlink at $red$vimrc$reset"
+    info "Removed existing symlink at $vimrc"
 elif [[ -f "$vimrc" ]]; then
-    # Move the existing file to a backup
     mv "$vimrc" "$vimrc.bak0"
-    echo -e "Moved file at $red$vimrc$reset to $green$vimrc.bak0$reset"
+    info "Moved existing file to $vimrc.bak0"
 fi
 
-local_vimrc="$current_directory/vimrc"
+local_vimrc="$SCRIPT_DIR/vimrc"
 if [[ "${1:-}" == "--min" ]]; then
-    local_vimrc="$current_directory/min.vimrc"
+    local_vimrc="$SCRIPT_DIR/min.vimrc"
+    info "Using minimal vimrc"
 fi
 
 # Create a symlink to the config file
-echo -e "Symlinking $yellow$local_vimrc$reset to $green$vimrc$reset"
+info "Symlinking $local_vimrc to $vimrc"
 ln -s "$local_vimrc" "$vimrc"
+echo ""
 
 # Install plugins using Vundle
-echo -e ""
-echo -e "Installing plugins with Vundle"
+info "Installing plugins with Vundle (this may take a moment)"
 vim +PluginInstall +PluginClean +qall
+echo ""
 
-echo -e ""
-echo -e "$bold$green""vim setup done!""$normal"
+success "Vim setup complete!"

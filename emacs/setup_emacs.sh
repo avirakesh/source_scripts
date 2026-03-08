@@ -1,84 +1,68 @@
 #!/bin/bash
 set -euo pipefail
 
-# Define the colors for output
-red="\033[31m"
-green="\033[32m"
-yellow="\033[33m"
-reset="\033[0m"
-bold="\033[1m"
-normal=$(tput sgr0)
+# Get the script directory
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+source "$SCRIPT_DIR/../style_helpers.sh"
 
-# Get the current directory of the script
-current_directory="$(dirname "$0")"
-current_directory="$(realpath "$current_directory")"
+header "Setting up Emacs"
+echo ""
 
-# root dir of vim config
+# root dir of emacs config
 config_dir="$HOME/.emacs.d"
-
-echo -e "Creating $green$config_dir$reset"
 mkdir -p "$config_dir"
 
 sanemacs_url="https://sanemacs.com/sanemacs.el"
 sanemacs_file="$config_dir/sanemacs.el"
-echo -e "Downloading ${yellow}sanemacs$reset to ${green}$sanemacs_file$reset"
-curl "$sanemacs_url" > "$sanemacs_file"
-
+info "Downloading sanemacs.el to $sanemacs_file"
+curl -s "$sanemacs_url" > "$sanemacs_file"
 echo ""
 
 target_init_el="$config_dir/init.el"
 
-echo -e ""
-# Check if the symlink already exists
+# Handle existing init.el or symlink
 if [[ -L "$target_init_el" ]]; then
-    # Delete the symlink
     rm "$target_init_el"
-    echo -e "Deleted symlink at $red$target_init_el$reset"
+    info "Removed existing symlink at $target_init_el"
 elif [[ -f "$target_init_el" ]]; then
-    # Move the existing file to a backup
     mv "$target_init_el" "$target_init_el.bak0"
-    echo -e "Moved file at $red$target_init_el$reset to $green$target_init_el.bak0$reset"
+    info "Moved existing file to $target_init_el.bak0"
 fi
 
-src_init_el="$current_directory/init.el"
+src_init_el="$SCRIPT_DIR/init.el"
 if [[ "${1:-}" == "--min" ]]; then
-    src_init_el="$current_directory/min.init.el"
+    src_init_el="$SCRIPT_DIR/min.init.el"
+    info "Using minimal init.el"
 fi
 
 # Create a symlink to the config file
-echo -e "Symlinking $yellow$src_init_el$reset to $green$target_init_el$reset"
+info "Symlinking $src_init_el to $target_init_el"
 ln -s "$src_init_el" "$target_init_el"
-
-
 echo ""
+
+# Symlink emacsw wrapper
 target_emacs_bin_dir="$HOME/bin"
 target_emacsw_bin="$target_emacs_bin_dir/emacsw"
-
 mkdir -p "$target_emacs_bin_dir"
-# Check if the symlink already exists
+
 if [[ -L "$target_emacsw_bin" ]]; then
-    # Delete the symlink
     rm "$target_emacsw_bin"
-    echo -e "Deleted symlink at $red$target_emacsw_bin$reset"
+    info "Removed existing symlink at $target_emacsw_bin"
 elif [[ -f "$target_emacsw_bin" ]]; then
-    # Move the existing file to a backup
     mv "$target_emacsw_bin" "$target_emacsw_bin.bak0"
-    echo -e "Moved file at $red$target_emacsw_bin$reset to $green$target_emacsw_bin.bak0$reset"
+    info "Moved existing file to $target_emacsw_bin.bak0"
 fi
 
-
-src_emacsw_bin="$current_directory/emacsw"
-# Create a symlink to the config file
-echo -e "Symlinking $yellow$src_emacsw_bin$reset to $green$target_emacsw_bin$reset"
+src_emacsw_bin="$SCRIPT_DIR/emacsw"
+info "Symlinking $src_emacsw_bin wrapper to $target_emacsw_bin"
 ln -s "$src_emacsw_bin" "$target_emacsw_bin"
+echo ""
 
-echo -e ""
-echo -e "${bold}${green}emacs setup done!$reset"
+success "Emacs setup complete!"
+echo ""
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
-    echo ""
-    echo "Linux Detected"
-    echo "You may have to run the following command to set emacsw as the default editor"
-    echo -e "    ${yellow}sudo update-alternatives --install /usr/bin/editor editor ${target_emacsw_bin} 2 && \\ $reset"
-    echo -e "        ${yellow}sudo update-alternatives --set editor $target_emacsw_bin$reset"
+    attention "Linux Detected: You may want to set emacsw as default editor:"
+    info "    sudo update-alternatives --install /usr/bin/editor editor ${target_emacsw_bin} 2 && \\"
+    info "    sudo update-alternatives --set editor $target_emacsw_bin"
 fi

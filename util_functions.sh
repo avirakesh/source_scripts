@@ -1,3 +1,12 @@
+# Get the directory of this script
+if [ -n "${BASH_SOURCE:-}" ]; then
+    UTIL_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+else
+    # Fallback for Zsh or other shells when sourced
+    UTIL_DIR="$(dirname "$(realpath "${0}")")"
+fi
+source "$UTIL_DIR/style_helpers.sh"
+
 function live_rsync() {
     local source_dir="$1"
     local target_dir="$2"
@@ -13,18 +22,18 @@ function live_rsync() {
     # Create a temporary file for combined rsync exclusions
     local temp_exclude_file=$(mktemp)
     if [ $? -ne 0 ]; then
-        echo "Error: Could not create temporary exclude file."
+        error "Could not create temporary exclude file."
         return 1
     fi
 
     # Ensure the temporary file is deleted when the script exits (e.g., on Ctrl+C)
-    trap "rm -f \"$temp_exclude_file\"; echo 'Temporary exclude file removed.'" EXIT
+    trap "rm -f \"$temp_exclude_file\"; info 'Temporary exclude file removed.'" EXIT
 
     # Populate the temporary exclude file
     local exclude_info=""
     if [ -n "$CUSTOM_RSYNC_EXCLUDE_PATH" ] && [ -f "$CUSTOM_RSYNC_EXCLUDE_PATH" ]; then
         cat "$CUSTOM_RSYNC_EXCLUDE_PATH" >> "$temp_exclude_file"
-        exclude_info+="Using global exclude file: $CUSTOM_RSYNC_EXCLUDE_PATH"
+        exclude_info+="global exclude file"
     fi
 
     local gitignore_path="${source_dir}/.gitignore"
@@ -35,22 +44,28 @@ function live_rsync() {
             exclude_info+=", "
         fi
         cat "$gitignore_path" >> "$temp_exclude_file"
-        exclude_info+="Using .gitignore from source: $gitignore_path"
+        exclude_info+=".gitignore"
     fi
 
-    echo "Starting live synchronization from '$source_dir' to '$target_dir'..."
-    echo "Monitoring for modify, create, delete events..."
+    header "Starting live synchronization"
+    echo ""
+    info "Source: $source_dir"
+    info "Target: $target_dir"
+    
     if [ -n "$exclude_info" ]; then
-        echo "$exclude_info"
+        info "Exclusions: $exclude_info"
     else
-        echo "No exclude files (.gitignore or CUSTOM_RSYNC_EXCLUDE_PATH) found."
+        warn "No exclude files found."
     fi
-    echo "Press Ctrl+C to stop."
+    echo ""
+    info "Press Ctrl+C to stop."
+    echo ""
 
-    while inotifywait -r -e modify,create,delete "$source_dir"; do
-        echo "Change detected! Running rsync..."
+    while inotifywait -r -e modify,create,delete "$source_dir" 2>/dev/null; do
+        echo ""
+        info "Change detected! Running rsync..."
         rsync -avz --delete-after --exclude-from "$temp_exclude_file" "$source_dir" "$target_dir"
-        echo "Rsync complete. Waiting for next change..."
+        success "Rsync complete. Waiting for next change..."
     done
 }
 

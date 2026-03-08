@@ -1,48 +1,44 @@
 #!/bin/bash
 set -euo pipefail
 
-# Get the current directory of the script
-current_directory="$(dirname "$(realpath "$0")")"
+# Get the script directory
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+source "$SCRIPT_DIR/../style_helpers.sh"
+
+header "Setting up Starship"
+echo ""
 
 # Define the paths for the config file and symlink destination
-config_file_path="$current_directory/starship.toml"
-config_dir="$HOME/.config" # Starship config file goes directly into ~/.config
+config_file_path="$SCRIPT_DIR/starship.toml"
+config_dir="$HOME/.config"
 symlink_destination="$config_dir/starship.toml"
 
-# Define the colors for output
-red="\033[31m"
-green="\033[32m"
-yellow="\033[33m"
-reset="\033[0m"
-bold="\033[1m"
-normal=$(tput sgr0)
-
 # Check if starship is installed
-if [[ -z "$(which starship)" ]]; then
-    echo -e "$bold$yellow""Warning:""$normal""$red starship$normal is not installed. Please install it to use this setup." >&2
+if ! command -v starship &>/dev/null; then
+    error "Starship is not installed. Please install it to use this setup."
     exit 1
 fi
 
-# Create config directory if it doesn't exist (for ~/.config)
+# Create config directory if it doesn't exist
 if [[ ! -d "$config_dir" ]]; then
-    echo -e "Creating directory for starship config at $green$config_dir$reset"
+    info "Creating directory for config at $config_dir"
     mkdir -p "$config_dir"
+    echo ""
 fi
 
-# Check if the symlink already exists
+# Handle existing config file or symlink
 if [[ -L "$symlink_destination" ]]; then
-    # Delete the symlink
     rm "$symlink_destination"
-    echo -e "Deleted existing symlink at $red$symlink_destination$reset"
+    info "Removed existing symlink at $symlink_destination"
 elif [[ -f "$symlink_destination" ]]; then
-    # Move the existing file to a backup
-    mv "$symlink_destination" "$symlink_destination.bak_$(date +%Y%m%d%H%M%S)"
-    echo -e "Moved existing file at $red$symlink_destination$reset to $green$symlink_destination.bak_$(date +%Y%m%d%H%M%S)$reset"
+    backup="$symlink_destination.bak_$(date +%Y%m%d%H%M%S)"
+    mv "$symlink_destination" "$backup"
+    info "Moved existing file to $backup"
 fi
 
 # Create a symlink to the config file
-echo -e "Symlinking $yellow$config_file_path$reset to $green$symlink_destination$reset"
+info "Symlinking $config_file_path to $symlink_destination"
 ln -s "$config_file_path" "$symlink_destination"
-
 echo ""
-echo -e "$bold$green""Starship Setup Done!""$normal"
+
+success "Starship setup complete!"

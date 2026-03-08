@@ -1,15 +1,23 @@
 #!/bin/bash
+set -euo pipefail
+
+# Get the script directory
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+source "$SCRIPT_DIR/../style_helpers.sh"
+
+header "Setting up Git"
+echo ""
 
 # Check if git is installed
-if [[ -z "$(which git)" ]]; then
-    echo "git not found"
+if ! command -v git &>/dev/null; then
+    error "Git not found. Please install it first."
     exit 1
 fi
 
-self_path=$(realpath $0)
-self_dir=$(dirname "$self_path")
+git_templates_path="$SCRIPT_DIR/git_templates"
 
-git_templates_path="$self_dir/git_templates"
-
-echo "Setting git templateDir to $git_templates_path"
+info "Setting git templateDir to $git_templates_path"
 git config --global init.templateDir "$git_templates_path"
+echo ""
+
+success "Git setup complete!"

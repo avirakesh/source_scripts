@@ -1,40 +1,37 @@
 #!/bin/bash
 set -euo pipefail
 
-# Get the current directory of the script
-current_directory="$(dirname "$0")"
-current_directory="$(realpath "$current_directory")"
+# Get the script directory
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+source "$SCRIPT_DIR/../style_helpers.sh"
+
+header "Setting up Zellij"
+echo ""
 
 # Define the paths for the config file and symlink destination
-config_file_path="$current_directory/config.kdl"
-
+config_file_path="$SCRIPT_DIR/config.kdl"
 zellij_config_dir="$HOME/.config/zellij"
 symlink_destination="$zellij_config_dir/config.kdl"
 
+if ! command -v zellij &>/dev/null; then
+    warn "Zellij is not installed. Proceeding anyway."
+    echo ""
+fi
+
 mkdir -p "$zellij_config_dir"
 
-# Define the colors for output
-read="\033[31m"
-green="\033[32m"
-yellow="\033[33m"
-reset="\033[0m"
-bold="\033[1m"
-normal=$(tput sgr0)
-
-# Check if the symlink already exists
+# Handle existing config file or symlink
 if [[ -L "$symlink_destination" ]]; then
-    # Delete the symlink
     rm "$symlink_destination"
-    echo -e "Deleted symlink at $read$symlink_destination$reset"
+    info "Removed existing symlink at $symlink_destination"
 elif [[ -f "$symlink_destination" ]]; then
-    # Move the existing file to a backup
     mv "$symlink_destination" "$symlink_destination.bak0"
-    echo -e "Moved file at $read$symlink_destination$reset to $green$symlink_destination.bak0$reset"
+    info "Moved existing file to $symlink_destination.bak0"
 fi
 
 # Create a symlink to the config file
-echo -e "Symlinking $yellow$config_file_path$reset to $green$symlink_destination$reset"
+info "Symlinking $config_file_path to $symlink_destination"
 ln -s "$config_file_path" "$symlink_destination"
-
 echo ""
-echo -e "$bold$green""Zellij Setup Done!""$normal"
+
+success "Zellij setup complete!"
