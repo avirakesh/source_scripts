@@ -13,16 +13,16 @@ _sheldon_update_check() {
     _sheldon_success() { echo -e "${GREEN}✅ ✔ $*${RESET}"; }
     _sheldon_error() { echo -e "${RED}❌ $*${RESET}"; }
 
-    # Print last update time if it exists
-    if [[ -f "$last_update" ]]; then
-        local last_date=$(date -r "$last_update" "+%Y-%m-%d %H:%M:%S")
-        _sheldon_info "Sheldon plugins last updated: $last_date"
-    fi
-
     # If file doesn't exist or is older than 7 days
     if [[ ! -f "$last_update" ]] || [[ -n "$(find "$last_update" -mtime +7 2>/dev/null)" ]]; then
         # Check if sheldon is installed
         if command -v sheldon > /dev/null; then
+            # Print last update time if it exists
+            if [[ -f "$last_update" ]]; then
+                local last_date=$(date -r "$last_update" "+%Y-%m-%d %H:%M:%S")
+                _sheldon_info "Sheldon plugins last updated: $last_date"
+            fi
+
             _sheldon_info "Updating sheldon plugins (this may take a few seconds)..."
 
             # Run synchronously as requested
