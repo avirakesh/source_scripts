@@ -1,0 +1,84 @@
+{
+    "layer": "top",
+    "position": "top",
+    "output": "DP-4",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 34,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "battery",
+        "tray",
+        "clock"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{id}: {icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "urgent": ""
+        }
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "󰈹 $1",
+            "(.*) - Visual Studio Code": "󰨞 $1",
+            "(.*) - Alacritty": " $1",
+            "(.*) - Dolphin": "󰉋 $1",
+            "": "Desktop"
+        },
+        "separate-outputs": true
+    },
+    "clock": {
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        }
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
+}

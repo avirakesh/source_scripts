@@ -1,0 +1,77 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(28, 28, 28, 0.6);
+    color: #ffffff;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+#custom-apple {
+    font-size: 20px;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#workspaces {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+#workspaces button.active {
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    color: #eb4d4b;
+}
+
+#window {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#clock {
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+#network, #pulseaudio, #battery, #tray {
+    padding: 0 10px;
+}
+
+#battery.charging {
+    color: #26A65B;
+}
+
+#battery.warning:not(.charging) {
+    color: #ffbe61;
+}
+
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #333333;
+    }
+}
