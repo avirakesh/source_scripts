@@ -23,11 +23,17 @@ fi
 
 # List of files/directories to symlink
 # Based on the ls -F output: hyprland.conf, hyprlock.conf, scripts, waybar
-targets=("hyprland.conf" "hyprlock.conf" "scripts" "waybar")
+targets=("hyprland.conf" "hyprlock.conf" "scripts" "waybar" "wofi")
 
 for target in "${targets[@]}"; do
     src_path="$SCRIPT_DIR/$target"
-    dest_path="$config_dir/$target"
+    
+    # Standard location for wofi is ~/.config/wofi
+    if [[ "$target" == "wofi" ]]; then
+        dest_path="$HOME/.config/wofi"
+    else
+        dest_path="$config_dir/$target"
+    fi
 
     if [[ ! -e "$src_path" ]]; then
         warn "Source $src_path does not exist. Skipping."

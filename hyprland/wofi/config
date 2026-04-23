@@ -1,0 +1,14 @@
+width=50%
+height=40%
+location=center
+show=drun
+prompt=
+filter_rate=100
+allow_markup=true
+no_actions=true
+halign=fill
+orientation=vertical
+content_type=application/x-desktop
+insensitive=true
+hide_scroll=true
+close_on_focus_loss=true
