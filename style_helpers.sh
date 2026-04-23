@@ -14,7 +14,7 @@ RESET='\033[0m'
 
 # Helpers
 info() { echo -e "${WHITE}🔹 $*${RESET}"; }
-success() { echo -e "${GREEN}✅ ✔ $*${RESET}"; }
+success() { echo -e "${GREEN}✔ $*${RESET}"; }
 warn() { echo -e "${YELLOW}⚠️  $*${RESET}"; }
 error() { echo -e "${RED}❌ $*${RESET}"; }
 attention() { echo -e "${ORANGE}🔔 ${BOLD}$*${RESET}"; }
