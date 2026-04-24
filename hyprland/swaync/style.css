@@ -1,5 +1,5 @@
 * {
-  font-family: "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
+  font-family: "SF Pro Display", "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
 }
 
 .notification-row {
@@ -8,26 +8,27 @@
 
 .notification-row:focus,
 .notification-row:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .notification {
   border-radius: 12px;
   margin: 6px 12px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   padding: 0;
-  background: rgba(28, 28, 28, 0.9);
+  background: rgba(35, 35, 35, 0.9);
   color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .notification-content {
   background: transparent;
-  padding: 10px;
+  padding: 12px;
   border-radius: 12px;
 }
 
 .close-button {
-  background: #f53c3c;
+  background: #ff3b30;
   color: white;
   text-shadow: none;
   padding: 0;
@@ -36,20 +37,17 @@
   margin-right: 10px;
   box-shadow: none;
   border: none;
-  min-width: 24px;
-  min-height: 24px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .close-button:hover {
-  box-shadow: none;
-  background: #eb4d4b;
-  transition: all 0.15s ease-in-out;
-  border: none;
+  background: #ff453a;
 }
 
 .notification-default-action,
 .notification-action {
-  padding: 4px;
+  padding: 6px;
   margin: 0;
   box-shadow: none;
   background: transparent;
@@ -59,14 +57,15 @@
 
 .notification-default-action:hover,
 .notification-action:hover {
-  -gtk-icon-effect: none;
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
 .control-center {
-  background: rgba(28, 28, 28, 0.9);
+  background: rgba(30, 30, 30, 0.9);
   color: #ffffff;
-  border-radius: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .control-center-list {
@@ -81,18 +80,17 @@
   color: #ffffff;
   padding: 10px;
   margin: 10px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .widget-title > button {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #ffffff;
-  text-shadow: none;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: none;
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 .widget-title > button:hover {
@@ -103,7 +101,7 @@
   color: #ffffff;
   padding: 10px;
   margin: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
 }
 
@@ -111,18 +109,16 @@
   font-size: 1rem;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .widget-dnd > switch:checked {
-  background: #33ccff;
-  border: 1px solid #33ccff;
+  background: #30d158;
 }
 
 .widget-mpris {
   color: #ffffff;
   padding: 10px;
   margin: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
 }

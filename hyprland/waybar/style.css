@@ -1,33 +1,34 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
-    font-size: 14px;
+    font-family: "SF Pro Display", "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 13px;
     min-height: 0;
 }
 
 window#waybar {
-    background: rgba(28, 28, 28, 0.6);
+    background: rgba(28, 28, 28, 0.8);
     color: #ffffff;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border at bottom */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-#custom-apple {
-    font-size: 20px;
+#custom-linux {
+    font-size: 16px;
     color: #ffffff;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 #workspaces {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 4px;
     background: transparent;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
 }
 
 #workspaces button.active {
@@ -35,38 +36,45 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-    color: #eb4d4b;
+    color: #ff3b30;
+}
+
+#workspaces button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
 }
 
 #window {
-    font-weight: bold;
+    font-weight: 500;
     margin-left: 10px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 #clock {
-    font-weight: bold;
-    padding-right: 15px;
+    font-weight: 600;
+    padding-right: 10px;
 }
 
 #network, #pulseaudio, #battery, #tray, #custom-notification {
-    padding: 0 10px;
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 #custom-notification {
-    font-size: 16px;
-    color: #ffffff;
+    font-size: 14px;
 }
 
 #battery.charging {
-    color: #26A65B;
+    color: #34c759;
 }
 
 #battery.warning:not(.charging) {
-    color: #ffbe61;
+    color: #ff9500;
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: #ff3b30;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;

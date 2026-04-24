@@ -1,12 +1,12 @@
-/* macOS Spotlight style for wofi - Light Theme with Hyprland colors */
+/* macOS Spotlight style for wofi - Dark Theme */
 
 window {
     margin: 0px;
-    border: 1px solid rgba(51, 204, 255, 0.4); /* Subtle cyan border */
-    background-color: rgba(245, 245, 245, 0.95); /* Light translucent background */
-    border-radius: 24px;
-    font-family: "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
-    color: #282828; /* Dark text for light theme */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(30, 30, 30, 0.9);
+    border-radius: 16px;
+    font-family: "SF Pro Display", "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
+    color: #ffffff;
 }
 
 #outer-box {
@@ -20,37 +20,36 @@ window {
 #input {
     margin: 5px;
     border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0px;
-    color: #282828;
+    color: #ffffff;
     background-color: transparent;
-    padding: 15px;
-    font-size: 24px; /* Larger font for Spotlight feel */
-    caret-color: #33ccff; /* Cyan caret for visibility */
+    padding: 12px;
+    font-size: 20px;
+    caret-color: #007AFF;
 }
 
 #entry {
-    padding: 10px;
-    border-radius: 16px;
+    padding: 8px;
+    border-radius: 8px;
     margin: 2px 5px;
 }
 
 #entry:selected {
-    /* Maintaining your Hyprland gradient for the selection highlight */
-    background: linear-gradient(45deg, rgba(51, 204, 255, 0.9), rgba(0, 255, 153, 0.9));
+    background-color: #007AFF;
     border: none;
     outline: none;
 }
 
 #text {
     margin: 5px;
-    font-size: 16px;
-    color: #282828;
+    font-size: 14px;
+    color: #ffffff;
 }
 
 #text:selected {
-    color: #ffffff; /* Contrast text against the gradient highlight */
-    font-weight: bold;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 #scroll {

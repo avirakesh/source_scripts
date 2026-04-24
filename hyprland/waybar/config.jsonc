@@ -6,8 +6,10 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 34,
+    "height": 28,
+    "spacing": 4,
     "modules-left": [
+        "custom/linux",
         "hyprland/workspaces",
         "hyprland/window"
     ],
@@ -16,10 +18,15 @@
         "network",
         "pulseaudio",
         "battery",
-        "custom/notification",
         "tray",
+        "custom/notification",
         "clock"
     ],
+    "custom/linux": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "wofi --show drun"
+    },
     "custom/notification": {
         "tooltip": false,
         "format": "{icon}",
@@ -44,7 +51,7 @@
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
-        "format": "{id}: {icon}",
+        "format": "{icon}",
         "format-icons": {
             "active": "",
             "default": "",
@@ -53,6 +60,7 @@
     },
     "hyprland/window": {
         "format": "{}",
+        "max-length": 40,
         "rewrite": {
             "(.*) — Mozilla Firefox": "󰈹 $1",
             "(.*) - Visual Studio Code": "󰨞 $1",
@@ -63,7 +71,7 @@
         "separate-outputs": true
     },
     "clock": {
-        "format": "{:%a %d %b %H:%M}",
+        "format": "{:%a %d %b  %I:%M %p}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "network": {
@@ -102,7 +110,7 @@
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "tray": {
-        "icon-size": 18,
+        "icon-size": 16,
         "spacing": 10
     }
 }
