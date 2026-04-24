@@ -22,15 +22,17 @@ fi
 # We should avoid symlinking the setup script itself or anything else not part of the config
 
 # List of files/directories to symlink
-# Based on the ls -F output: hyprland.conf, hyprlock.conf, scripts, waybar
-targets=("hyprland.conf" "hyprlock.conf" "scripts" "waybar" "wofi")
+# Based on the ls -F output: hyprland.conf, hyprlock.conf, scripts, waybar, wofi, swaync
+targets=("hyprland.conf" "hyprlock.conf" "scripts" "waybar" "wofi" "swaync")
 
 for target in "${targets[@]}"; do
     src_path="$SCRIPT_DIR/$target"
     
-    # Standard location for wofi is ~/.config/wofi
+    # Standard location for wofi is ~/.config/wofi, swaync is ~/.config/swaync
     if [[ "$target" == "wofi" ]]; then
         dest_path="$HOME/.config/wofi"
+    elif [[ "$target" == "swaync" ]]; then
+        dest_path="$HOME/.config/swaync"
     else
         dest_path="$config_dir/$target"
     fi

@@ -1,0 +1,128 @@
+* {
+  font-family: "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
+}
+
+.notification-row {
+  outline: none;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.notification {
+  border-radius: 12px;
+  margin: 6px 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 0;
+  background: rgba(28, 28, 28, 0.9);
+  color: #ffffff;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.close-button {
+  background: #f53c3c;
+  color: white;
+  text-shadow: none;
+  padding: 0;
+  border-radius: 100%;
+  margin-top: 10px;
+  margin-right: 10px;
+  box-shadow: none;
+  border: none;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: #eb4d4b;
+  transition: all 0.15s ease-in-out;
+  border: none;
+}
+
+.notification-default-action,
+.notification-action {
+  padding: 4px;
+  margin: 0;
+  box-shadow: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  -gtk-icon-effect: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.control-center {
+  background: rgba(28, 28, 28, 0.9);
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.widget-title {
+  color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.5rem;
+}
+
+.widget-title > button {
+  font-size: 1rem;
+  color: #ffffff;
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  border-radius: 12px;
+  border: none;
+  padding: 5px;
+}
+
+.widget-title > button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.widget-dnd {
+  color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.widget-dnd > switch {
+  font-size: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.widget-dnd > switch:checked {
+  background: #33ccff;
+  border: 1px solid #33ccff;
+}
+
+.widget-mpris {
+  color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}

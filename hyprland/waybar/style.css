@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "CaskaydiaCove Nerd Font", Helvetica, Arial, sans-serif;
+    font-family: "Noto Sans", "Helvetica Neue", "Arial", sans-serif;
     font-size: 14px;
     min-height: 0;
 }
@@ -48,8 +48,13 @@ window#waybar {
     padding-right: 15px;
 }
 
-#network, #pulseaudio, #battery, #tray {
+#network, #pulseaudio, #battery, #tray, #custom-notification {
     padding: 0 10px;
+}
+
+#custom-notification {
+    font-size: 16px;
+    color: #ffffff;
 }
 
 #battery.charging {
