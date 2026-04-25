@@ -51,11 +51,11 @@
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
-        "format": "{icon}",
+        "format": "{name}",
         "format-icons": {
+            "urgent": "",
             "active": "",
-            "default": "",
-            "urgent": ""
+            "default": ""
         }
     },
     "hyprland/window": {
