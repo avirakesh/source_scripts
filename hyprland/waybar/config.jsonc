@@ -19,8 +19,23 @@
         "battery",
         "tray",
         "custom/notification",
-        "clock"
+        "clock",
+        "custom/power"
     ],
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "/home/highonh2o/.source_scripts/hyprland/waybar/power_menu.xml",
+        "menu-actions": {
+            "lock": "hyprlock",
+            "shutdown": "systemctl poweroff",
+            "reboot": "systemctl reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate",
+            "logout": "hyprctl dispatch exit"
+        }
+    },
     "custom/linux": {
         "format": "  ",
         "tooltip": false,

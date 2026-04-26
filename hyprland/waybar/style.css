@@ -62,6 +62,43 @@ window#waybar {
     padding-right: 12px;
 }
 
+#custom-power {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    padding-right: 15px;
+    padding-left: 10px;
+}
+
+menu {
+    background: rgba(28, 28, 28, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: "SF Pro Display", sans-serif;
+}
+
+menuitem {
+    padding: 6px 16px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+menuitem:hover {
+    background: #007AFF;
+    color: #ffffff;
+}
+
+menuitem.shutdown:hover {
+    background: #ff3b30;
+}
+
+menu separator {
+    background: rgba(255, 255, 255, 0.1);
+    margin: 6px 4px;
+}
+
 #network, #pulseaudio, #battery, #tray, #custom-notification {
     padding: 0 10px;
     color: rgba(255, 255, 255, 0.9);
