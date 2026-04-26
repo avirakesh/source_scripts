@@ -1,7 +1,6 @@
 {
     "layer": "top",
     "position": "top",
-    "output": "DP-4",
     "mod": "dock",
     "exclusive": true,
     "passthrough": false,
@@ -94,7 +93,11 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["󰕿", "󰖀", "󰕾"]
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
         },
         "on-click": "alacritty -e alsamixer",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -107,7 +110,19 @@
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
         "format-plugged": "󰂄 {capacity}%",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
     },
     "tray": {
         "icon-size": 24,
