@@ -50,9 +50,13 @@ hyprctl monitors -j | jq -c '.[]' | while read -r monitor; do
     MON_NAME=$(echo "$monitor" | jq -r '.name')
     MON_WIDTH=$(echo "$monitor" | jq -r '.width')
     MON_HEIGHT=$(echo "$monitor" | jq -r '.height')
+    TRANSFORM=$(echo "$monitor" | jq -r '.transform')
 
     # Determine if portrait or landscape
-    if [ "$MON_WIDTH" -gt "$MON_HEIGHT" ]; then
+    # transform 1 = 90deg, transform 3 = 270deg
+    if [[ "$TRANSFORM" == "1" || "$TRANSFORM" == "3" ]]; then
+        DIR="$PORTRAIT_DIR"
+    elif [ "$MON_WIDTH" -gt "$MON_HEIGHT" ]; then
         DIR="$LANDSCAPE_DIR"
     else
         DIR="$PORTRAIT_DIR"
