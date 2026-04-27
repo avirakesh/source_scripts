@@ -23,7 +23,7 @@ fi
 
 # List of files/directories to symlink
 # Based on the ls -F output: hyprland.conf, hyprlock.conf, scripts, waybar, wofi, swaync
-targets=("hyprland.conf" "hyprlock.conf" "scripts" "waybar" "wofi" "swaync" "configs")
+targets=("hyprland.conf" "hyprlock.conf" "hypridle.conf" "scripts" "waybar" "wofi" "swaync" "configs")
 
 for target in "${targets[@]}"; do
     src_path="$SCRIPT_DIR/$target"
