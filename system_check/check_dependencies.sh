@@ -38,6 +38,8 @@ reasons["waybar"]="Highly customizable Wayland bar"
 reasons["swww"]="Efficient animated wallpaper daemon"
 reasons["swaync"]="Sway-notification-center for Wayland notifications"
 reasons["dolphin"]="KDE file manager used in Hyprland setup"
+reasons["xdg-desktop-portal-hyprland"]="Hyprland implementation of xdg-desktop-portal"
+reasons["xdg-desktop-portal-gtk"]="GTK implementation of xdg-desktop-portal"
 reasons["wpctl"]="WirePlumber controller for audio management"
 reasons["brightnessctl"]="Backlight and LED brightness control"
 reasons["playerctl"]="Media player control utility"
@@ -68,6 +70,8 @@ if [[ "$OS_TYPE" == "Linux" ]]; then
         "swww"
         "swaync"
         "dolphin"
+        "xdg-desktop-portal-hyprland"
+        "xdg-desktop-portal-gtk"
         "wpctl"
         "brightnessctl"
         "playerctl"
@@ -82,7 +86,14 @@ unique_dependencies=($(printf "%s\n" "${dependencies[@]}" | sort -u))
 missing_count=0
 
 for tool in "${unique_dependencies[@]}"; do
-    if ! command -v "$tool" &>/dev/null; then
+    is_installed=0
+    if command -v "$tool" &>/dev/null; then
+        is_installed=1
+    elif [[ -f "/usr/libexec/$tool" || -f "/usr/lib/$tool" ]]; then
+        is_installed=1
+    fi
+
+    if [[ $is_installed -eq 0 ]]; then
         reason="${reasons[$tool]:-Unknown purpose}"
         echo -e "    [${RED}✗${RESET}] ${YELLOW}$tool${RESET} - $reason"
         missing_count=$((missing_count + 1))
