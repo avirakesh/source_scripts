@@ -1,7 +1,7 @@
 
-if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
-    alias code="command code --ozone-platform=wayland"
-fi;
+if [[ "$(uname)" == "Linux" ]]; then
+    alias open="xdg-open"
+fi
 
 alias coden="code -n"
 
