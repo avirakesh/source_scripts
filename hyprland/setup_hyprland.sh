@@ -5,6 +5,11 @@ set -euo pipefail
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 source "$SCRIPT_DIR/../style_helpers.sh"
 
+if [[ "$(uname)" == "Darwin" ]]; then
+    warn "macOS detected: Skipping Hyprland setup (Hyprland is Linux-only)."
+    exit 0
+fi
+
 header "Setting up Hyprland"
 echo ""
 
