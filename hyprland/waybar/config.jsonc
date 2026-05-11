@@ -113,7 +113,7 @@
                 "󰕾"
             ]
         },
-        "on-click": "alacritty -e alsamixer",
+        "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "battery": {
