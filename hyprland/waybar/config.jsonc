@@ -5,8 +5,8 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 34,
-    "spacing": 6,
+    "height": 26,
+    "spacing": 4,
     "modules-left": [
         "custom/linux",
         "hyprland/workspaces",
@@ -98,7 +98,7 @@
         "on-click": "nm-connection-editor"
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "format-muted": "󰝟",
         "format-icons": {
             "headphone": "",
