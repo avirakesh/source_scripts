@@ -7,8 +7,8 @@ description: Generates a git commit message that follows the repository's strict
 When you need to generate a git commit message, follow these steps:
 
 1.  **Analyze the staged changes**:
-    - Run `git status` to see what is currently staged.
-    - Run `git diff --cached` to understand the specific changes being committed.
+    - Run `git --no-pager status` to see what is currently staged.
+    - Run `git --no-pager diff --cached` to understand the specific changes being committed.
 
 2.  **Reference the guidelines**:
     - **MANDATORY**: You must check `AGENTS.md` and follow any instructions within it to the letter to ensure strict compliance with the repository's standards.
