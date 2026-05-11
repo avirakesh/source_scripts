@@ -17,6 +17,7 @@ window#waybar {
     margin: 4px 4px 0;
     border-radius: 15px;
     transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 #custom-linux:hover, #network:hover, #pulseaudio:hover, #custom-notification:hover, #custom-power:hover {
@@ -62,7 +63,6 @@ window#waybar {
 
 #window {
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
 }
 
 #clock {
@@ -71,7 +71,6 @@ window#waybar {
 
 #custom-power {
     font-size: 20px;
-    color: rgba(255, 255, 255, 0.9);
 }
 
 menu {
@@ -103,10 +102,6 @@ menuitem.shutdown:hover {
 menu separator {
     background: rgba(255, 255, 255, 0.1);
     margin: 6px 4px;
-}
-
-#network, #pulseaudio, #battery, #tray, #custom-notification {
-    color: rgba(255, 255, 255, 0.9);
 }
 
 #custom-notification {
