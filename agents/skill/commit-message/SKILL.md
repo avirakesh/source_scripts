@@ -1,5 +1,5 @@
 ---
-name: git-commit-message-generator
+name: commit-message
 description: Generates a git commit message that follows the repository's strict guidelines.
 ---
 ## Instructions
