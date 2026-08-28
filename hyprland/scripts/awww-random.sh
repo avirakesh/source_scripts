@@ -1,15 +1,15 @@
 #!/bin/bash
 
-STATE_DIR="$HOME/.cache/swww"
+STATE_DIR="$HOME/.cache/awww"
 mkdir -p "$STATE_DIR"
 
 CACHE_DIR="$HOME/.cache/auto-wallpaper"
 LANDSCAPE_DIR="$CACHE_DIR/landscape"
 PORTRAIT_DIR="$CACHE_DIR/portrait"
 
-# Ensure swww-daemon is running
-if ! pgrep -x "swww-daemon" > /dev/null; then
-    swww-daemon &
+# Ensure awww-daemon is running
+if ! pgrep -x "awww-daemon" > /dev/null; then
+    awww-daemon &
     sleep 0.5
 fi
 
@@ -64,7 +64,7 @@ hyprctl monitors -j | jq -c '.[]' | while read -r monitor; do
 
     IMG=$(get_unique_random_image "$DIR" "$MON_NAME")
     if [[ -n "$IMG" ]]; then
-        swww img -o "$MON_NAME" "$IMG" --transition-type random --transition-step 20 --transition-fps 60
+        awww img -o "$MON_NAME" "$IMG" --transition-type random --transition-step 20 --transition-fps 60
         
         # Extract tertiary color using matugen with scheme-expressive and high contrast
         COLOR=$(matugen image "$IMG" --type scheme-expressive --contrast 1.0 -j strip | jq -r '.colors.dark.tertiary' 2>/dev/null)
