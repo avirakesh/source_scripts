@@ -47,6 +47,7 @@ reasons["playerctl"]="Media player control utility"
 reasons["jq"]="Command-line JSON processor (used in scripts)"
 reasons["matugen"]="Material Design 3 color scheme generator"
 reasons["hyprshot"]="Screenshot utility for Hyprland"
+reasons["bat"]="Syntax-highlighted file viewer"
 
 # Common dependencies across all platforms
 dependencies=(
@@ -57,6 +58,7 @@ dependencies=(
     "vim"
     "zellij"
     "emacs"
+    "bat"
 )
 
 # Linux-specific dependencies (Hyprland ecosystem)

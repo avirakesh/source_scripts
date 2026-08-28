@@ -30,3 +30,6 @@ alias ls='ls --color=auto'
 
 # glow
 alias md="glow"
+
+# bat
+alias less="bat"
