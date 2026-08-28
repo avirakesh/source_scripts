@@ -1,0 +1,3 @@
+# bat configuration
+# Always page output through the pager, even for short files
+--paging=always
