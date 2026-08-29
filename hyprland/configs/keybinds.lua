@@ -58,8 +58,8 @@ hl.bind(mainMod .. " + CTRL + up",    hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + CTRL + down",  hl.dsp.window.move({ direction = "down" }))
 
 -- Move tiled window to specific displays
-hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.move({ monitor = "mon:" .. leftMonitor }))
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ monitor = "mon:" .. rightMonitor }))
+hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.move({ monitor = leftMonitor }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ monitor = rightMonitor }))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),  { locked = true, repeating = true })
