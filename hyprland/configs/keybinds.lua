@@ -27,12 +27,12 @@ hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- Switch virtual desktops
-hl.bind("CTRL + ALT + left",  hl.dsp.focus({ workspace = "m-1" }))
-hl.bind("CTRL + ALT + right", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind("CTRL + ALT + left",  function() hl.plugin.virtual_desktops.prevdesk() end)
+hl.bind("CTRL + ALT + right", function() hl.plugin.virtual_desktops.nextdesk() end)
 
 -- Move windows between virtual desktops (silent: don't follow the window)
-hl.bind("CTRL + ALT + SHIFT + left",  hl.dsp.window.move({ workspace = "m-1", follow = false }))
-hl.bind("CTRL + ALT + SHIFT + right", hl.dsp.window.move({ workspace = "m+1", follow = false }))
+hl.bind("CTRL + ALT + SHIFT + left",  function() hl.plugin.virtual_desktops.movetoprevdesk() end)
+hl.bind("CTRL + ALT + SHIFT + right", function() hl.plugin.virtual_desktops.movetonextdesk() end)
 
 -- Special workspaces (scratchpads)
 hl.bind(mainMod .. " + O",           hl.dsp.workspace.toggle_special("obsidian"))
@@ -44,8 +44,8 @@ hl.bind(mainMod .. " + SHIFT + M",   hl.dsp.window.move({ workspace = "special:m
 hl.bind(mainMod .. " + CTRL + SHIFT + M", hl.dsp.window.move({ workspace = "e+0" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.window.move({ workspace = "m-1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.window.move({ workspace = "m+1" }))
+hl.bind(mainMod .. " + mouse_down",   function() hl.plugin.virtual_desktops.cyclevdesks() end)
+hl.bind(mainMod .. " + mouse_up", function() hl.plugin.virtual_desktops.backcyclevdesks() end)
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
