@@ -45,7 +45,6 @@ reasons["pavucontrol"]="PulseAudio Volume Control"
 reasons["brightnessctl"]="Backlight and LED brightness control"
 reasons["playerctl"]="Media player control utility"
 reasons["jq"]="Command-line JSON processor (used in scripts)"
-reasons["matugen"]="Material Design 3 color scheme generator"
 reasons["hyprshot"]="Screenshot utility for Hyprland"
 reasons["bat"]="Syntax-highlighted file viewer"
 
@@ -81,7 +80,6 @@ if [[ "$OS_TYPE" == "Linux" ]]; then
         "brightnessctl"
         "playerctl"
         "jq"
-        "matugen"
         "hyprshot"
     )
 fi

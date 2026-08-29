@@ -1,24 +1,3 @@
--- Dynamic colors from wallpaper
--- (hyprlang: source = ~/.cache/hypr/colors.conf)
--- The generated colors.conf still uses hyprlang variable syntax, which the
--- lua config no longer parses directly, so it is read manually here.
-local wallpaperColors = {}
-do
-    local colorsFile = io.open(os.getenv("HOME") .. "/.cache/hypr/colors.conf", "r")
-    if colorsFile then
-        for line in colorsFile:lines() do
-            local name, value = line:match("^%s*%$(%S+)%s*=%s*(.-)%s*$")
-            if name and value then
-                wallpaperColors[name] = value
-            end
-        end
-        colorsFile:close()
-    end
-end
-
--- $gradient ?= rgba(ffffff33)
-local gradient = wallpaperColors.gradient or "rgba(ffffff33)"
-
 -- https://wiki.hypr.land/Configuring/Variables/#general
 hl.config({
     general = {
@@ -27,9 +6,9 @@ hl.config({
 
         border_size = 1,
 
-        -- macOS-like subtle border (overridden by dynamic gradient)
+        -- macOS-like subtle border
         col = {
-            active_border   = gradient,
+            active_border   = "rgba(ffffff33)",
             inactive_border = "rgba(50505022)",
         },
 
