@@ -4,7 +4,7 @@ hl.config({
         gaps_in  = 4,
         gaps_out = 8,
 
-        border_size = 1,
+        border_size = 2,
 
         -- macOS-like subtle border
         col = {
@@ -29,6 +29,10 @@ hl.config({
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
+
+        -- Dim inactive windows so the active window reads as "raised"
+        dim_inactive = true,
+        dim_strength = 0.15,
 
         shadow = {
             enabled      = true,
