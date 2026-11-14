@@ -9,7 +9,7 @@ opacity = 0.9
 blur = true
 
 [font]
-normal = { family="CaskaydiaCove Nerd Font Mono" }
+normal = { family="GoogleSansCode Nerd Font Mono" }
 size = 11.25
 
 [terminal]
