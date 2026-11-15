@@ -29,23 +29,6 @@ reasons["vim"]="Standard text editor"
 reasons["zellij"]="Terminal workspace and multiplexer"
 reasons["emacs"]="Extensible text editor"
 reasons["alacritty"]="GPU-accelerated terminal emulator"
-reasons["hyprland"]="Dynamic tiling Wayland compositor"
-reasons["hyprlock"]="Hyprland's GPU-accelerated screen locking utility"
-reasons["hypridle"]="Hyprland's idle management daemon"
-reasons["hyprpm"]="Hyprland Plugin Manager"
-reasons["wofi"]="Wayland launcher and menu program"
-reasons["waybar"]="Highly customizable Wayland bar"
-reasons["awww"]="Efficient animated wallpaper daemon"
-reasons["swaync"]="Sway-notification-center for Wayland notifications"
-reasons["dolphin"]="KDE file manager used in Hyprland setup"
-reasons["xdg-desktop-portal-hyprland"]="Hyprland implementation of xdg-desktop-portal"
-reasons["xdg-desktop-portal-gtk"]="GTK implementation of xdg-desktop-portal"
-reasons["wpctl"]="WirePlumber controller for audio management"
-reasons["pavucontrol"]="PulseAudio Volume Control"
-reasons["brightnessctl"]="Backlight and LED brightness control"
-reasons["playerctl"]="Media player control utility"
-reasons["jq"]="Command-line JSON processor (used in scripts)"
-reasons["hyprshot"]="Screenshot utility for Hyprland"
 reasons["bat"]="Syntax-highlighted file viewer"
 
 # Common dependencies across all platforms
@@ -60,27 +43,10 @@ dependencies=(
     "bat"
 )
 
-# Linux-specific dependencies (Hyprland ecosystem)
+# Linux-specific dependencies (desktop / terminal utilities)
 if [[ "$OS_TYPE" == "Linux" ]]; then
     dependencies+=(
         "alacritty"
-        "hyprland"
-        "hyprlock"
-        "hypridle"
-        "hyprpm"
-        "wofi"
-        "waybar"
-        "awww"
-        "swaync"
-        "dolphin"
-        "xdg-desktop-portal-hyprland"
-        "xdg-desktop-portal-gtk"
-        "wpctl"
-        "pavucontrol"
-        "brightnessctl"
-        "playerctl"
-        "jq"
-        "hyprshot"
     )
 fi
 
